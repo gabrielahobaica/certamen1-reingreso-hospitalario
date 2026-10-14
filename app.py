@@ -1,4 +1,4 @@
-"""Dashboard Certamen 1 - Costo de clasificacion y umbral optimo.
+"""Dashboard Certamen 1 - Costo de clasificación y umbral óptimo.
 
 Reingreso hospitalario a 30 dias (Diabetes 130-US Hospitals).
 Lee las probabilidades del test exportadas desde el notebook (probabilidades_test.csv):
@@ -14,7 +14,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 # ---------------------------------------------------------------------------
-# Configuracion general
+# Configuración general
 # ---------------------------------------------------------------------------
 st.set_page_config(page_title="Reingreso a 30 días · Umbral óptimo", page_icon="🏥", layout="wide")
 
@@ -25,7 +25,7 @@ GRIS = "#6b7280"
 VERDE = "#1baf7a"
 
 
-# Formato de numeros en espanol (miles con punto, decimales con coma)
+# Formato de números en español (miles con punto, decimales con coma)
 def usd(x):
     return f"US$ {x:,.0f}".replace(",", ".")
 
@@ -37,10 +37,10 @@ def dec(x, d=3):
 def num(x):
     return f"{x:,}".replace(",", ".")
 
-# Supuestos base (seccion 6 del notebook)
-COSTO_PROGRAMA = 413      # c: programa de transicion por paciente (WSIPP, US$ 2014)
+# Supuestos base (sección 6 del notebook)
+COSTO_PROGRAMA = 413      # c: programa de transición por paciente (WSIPP, US$ 2014)
 COSTO_REINGRESO = 14400   # R: costo promedio de un reingreso a 30 dias (HCUP SB #248, 2016)
-EFECTIVIDAD = 0.18        # e: reduccion relativa del riesgo (Leppin et al., 2014)
+EFECTIVIDAD = 0.18        # e: reducción relativa del riesgo (Leppin et al., 2014)
 FP_BASE = COSTO_PROGRAMA
 FN_BASE = round(EFECTIVIDAD * COSTO_REINGRESO - COSTO_PROGRAMA)   # 2.179
 
@@ -177,7 +177,7 @@ with st.sidebar:
 
 
 # ---------------------------------------------------------------------------
-# Calculos para el umbral elegido y las referencias
+# Cálculos para el umbral elegido y las referencias
 # ---------------------------------------------------------------------------
 def costo(fp, fn):
     return costo_fp * fp + costo_fn * fn
@@ -233,7 +233,7 @@ st.markdown(
 )
 
 # ---------------------------------------------------------------------------
-# Fila 1: curva de costo y matriz de confusion
+# Fila 1: curva de costo y matriz de confusión
 # ---------------------------------------------------------------------------
 c1, c2 = st.columns([1.3, 1])
 
